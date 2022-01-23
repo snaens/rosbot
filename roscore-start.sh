@@ -14,11 +14,6 @@ if screen -list | grep -q "roscore"; then
                 exit 1
 fi
 fi
-#change robot/PC IP here -----------------------------------------------------------------------------------------------------------------
-#PCIP="192.168.0.156"
-#robotIP="192.168.0.91"
-
-#export ROS_IP="${robotIP}"; export ROS_HOSTNAME="${robotIP}"; ROS_MASTER_URI="http://${robotIP}:11311"
 
 
 #start roscore and check for errors
