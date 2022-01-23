@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#start file location
+LAUNCH='/root/ydlidar_ws/src/ydlidar_ros_driver/launch/X4.launch'
+
 #colors!
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -60,15 +63,15 @@ fi
 
 
 #edit lidar setup file to correct port
-line=$(grep -nw port /root/ydlidar_ws/src/ydlidar_ros_driver/launch/X4.launch | cut -f1 -d:)
+line=$(grep -nw port "${LAUNCH}" | cut -f1 -d:)
 
-sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"${port}\"/>" /root/ydlidar_ws/src/ydlidar_ros_driver/launch/X4.launch
+sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"${port}\"/>" "${LAUNCH}"
 
 
 
 #LAUNCH!
 {
-screen -dm -L -Logfile "/root/lidar-log.txt" -S lidar roslaunch /root/ydlidar_ws/src/ydlidar_ros_driver/launch/X4.launch && printf "${GREEN}Screen 'lidar' started!${NC}\n"
+screen -dm -L -Logfile "/root/lidar-log.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}\n"
 }||{ #(and check for errors)
 printf "${RED}ERROR: could not start screen 'lidar'${NC}%s\n"
 }
