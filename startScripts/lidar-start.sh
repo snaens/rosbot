@@ -63,7 +63,7 @@ fi
 
 #LAUNCH!
 printf "${YELLOW}starting LIDAR...${NC}%s\n"
-rm /root/rosbot/logs/lidar-log.txt #remove old log, otherwise log just keeps on getting longer...
+rm /root/rosbot/logs/lidarLog.txt #remove old log, otherwise log just keeps on getting longer...
 {
 screen -dm -L -Logfile "/root/rosbot/logs/lidarLog.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}%s\n"
 }||{ #(and check for errors)
@@ -71,5 +71,5 @@ printf "${RED}ERROR: could not start screen 'lidar'${NC}%s\n"
 }
 sleep 6
 if ! screen -list | grep -q "lidar"; then
-    printf "${RED}ERROR: screen crashed! check logs '~/rosbot/logs/lidarLog.txt'${NC}%s\n" && exit 1
+    printf "${RED}ERROR: screen crashed! check logs at '~/rosbot/logs/lidarLog.txt'${NC}%s\n" && exit 1
 fi
