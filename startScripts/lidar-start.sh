@@ -50,11 +50,10 @@ wait
 ) | sort ) | grep "$DEV" | awk '{print $1}' )
 
 
+#edit lidar setup file to correct port
+line=$(grep -nw port "${LAUNCH}" | cut -f1 -d:)
 
-
-#start lidar-driver and check for errors
-printf "${YELLOW}starting LIDAR...${NC}%s\n"
-rm /root/lidar-log.txt #remove old log, otherwise log just keeps on getting longer...
+sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"${port}\"/>" "${LAUNCH}"
 
 if ! [ -e ${port} ]; then #check if the port exists
         printf "${RED}ERROR: could not find LIDAR.${NC}%s\n" && exit 1
@@ -62,20 +61,15 @@ fi
 
 
 
-#edit lidar setup file to correct port
-line=$(grep -nw port "${LAUNCH}" | cut -f1 -d:)
-
-sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"${port}\"/>" "${LAUNCH}"
-
-
-
 #LAUNCH!
+printf "${YELLOW}starting LIDAR...${NC}%s\n"
+rm /root/rosbot/logs/lidar-log.txt #remove old log, otherwise log just keeps on getting longer...
 {
-screen -dm -L -Logfile "/root/lidar-log.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}%s\n"
+screen -dm -L -Logfile "/root/rosbot/logs/lidarLog.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}%s\n"
 }||{ #(and check for errors)
 printf "${RED}ERROR: could not start screen 'lidar'${NC}%s\n"
 }
 sleep 6
 if ! screen -list | grep -q "lidar"; then
-    printf "${RED}ERROR: screen crashed!${NC}%s\n" && exit 1
+    printf "${RED}ERROR: screen crashed! check logs '~/rosbot/logs/lidarLog.txt'${NC}%s\n" && exit 1
 fi
