@@ -71,7 +71,11 @@ sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"$
 
 #LAUNCH!
 {
-screen -dm -L -Logfile "/root/lidar-log.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}\n"
+screen -dm -L -Logfile "/root/lidar-log.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}%s\n"
 }||{ #(and check for errors)
 printf "${RED}ERROR: could not start screen 'lidar'${NC}%s\n"
 }
+sleep 6
+if ! screen -list | grep -q "lidar"; then
+    printf "${RED}ERROR: screen crashed!${NC}%s\n" && exit 1
+fi
