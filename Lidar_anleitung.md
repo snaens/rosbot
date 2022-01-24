@@ -46,7 +46,7 @@ Installieren vom YDLidar-SDK
 ===
 ---
 
->**einfach alles in den kästen auf einmal reinkopieren, dann wird alles nacheinander durchgeführt**
+>**Alles in den kästen auf einmal reinkopieren, dann wird alles nacheinander ausgeführt**
 ---
 <br>
 (nur empfohlen) ein neues workspace anlagen:
@@ -72,13 +72,13 @@ Benötigte Pakete installieren:
 
 >falls `sudo apt update` pakete zum Aktualisieren findet, `sudo apt upgrade` ausführen
 >
-> **`sudo apt update` aktualisiert pakete nicht, sondern such nur nach Updates!**
+> **`sudo apt update` aktualisiert Pakete nicht, sondern sucht nur nach Updates!**
 
 <br>
 
 ---
 <br>
-YDLidar-SDK runterladen und installieren:
+YDLidar-SDK herunterladen und installieren:
 
     cd ~/ydlidar_ws/src/
     git clone https://github.com/YDLIDAR/YDLidar-SDK.git
@@ -102,9 +102,6 @@ Installieren vom YDLidar-ROS-driver
 
 >ausführlich dokumentiert auf `https://github.com/YDLIDAR/ydlidar_ros_driver/blob/master/README.md`
 
-~~es ist schon 23:15 Uhr, das hier nochmal aufzuschreiben lässt sich bestimmt aufschieben~~  
-~~was du heute kannst besorgen verschiebe schön auf morgen!~~
-
 <br>
 
 ---
@@ -118,7 +115,7 @@ Den Lidar starten!
 
 ---
 
->es gibt 2 Möglichkeiten: entweder von hand starten, **oder mein tolles handgemachtes Skript benutzten!** 
+>Es gibt zwei Möglichkeiten: entweder von Hand starten, **oder mein tolles handgemachtes Skript benutzten!** 
 
 <br>
 Herunterladen von meinen Skripten:
@@ -138,61 +135,61 @@ ist das nicht pog?! ![POG! {hier sollte ein bild sein lol}](http://pipeman.org/p
 
 <br>
 <br>
-ach ja, das andere verfahren...  
+Ach ja, das andere Verfahren...  
 
 ---
 
->man kann auch den LIDAR "manuell", also ohne mein skript starten (bzw selber dieselben sachen machen):
+>Man kann auch den LIDAR "manuell", also ohne mein Skript starten (bzw selber dieselben Sachen machen):
 
-lidar ausstecken!
+Lidar ausstecken!
 
     cd /dev/
     ls
-lidar wieder einstecken!
+Lidar wieder einstecken!
 
     ls
->es wird ein Gerät auftauchen, `ttyUSBx` das x wird eine Zahl sein, merkt euch dieses Gerät
+>Es wird ein Gerät auftauchen: `ttyUSBx`. Das x wird eine Zahl sein, merkt euch dieses Gerät
  
->genau dies kann man mit dem `findUSBdev.sh` skript machen! 
+>Genau dies kann man mit dem `findUSBdev.sh` Skript machen! 
 
 <br>
 
-dann zum lidar.launch:
+Dann zum lidar.launch:
 
     cd ~/ydlidar_ws/src/ydlidar_ros_driver/launch/
     ls
 <br>
-jetzt stehen da viele launch-dateien, nehmt die von eurem Lidar (hier als beispiel der X4):
+Jetzt stehen da viele launch-Dateien, nehmt die von eurem Lidar (hier als beispiel der X4):
 
     nano X4.launch
 <br>
-jetzt stehen da viele einstellungen, sucht die vom `port` und bessert den port zum Lidar `/dev/ttyUSBx` aus:
+Jetzt stehen da viele einstellungen, sucht die vom `port` und bessert den port zum Lidar dem Port, den ihr euch merken solltet aus.
 
 > \<param name="port"         type="string" value="/dev/ydlidar"/>
 
 wird zu
 
-> \<param name="port"         type="string" value="/dev/ttyUSBx"/>
+> \<param name="port"         type="string" value="PORT VON VORHER"/>
 
 <br>
 
-dann kann man den endlich starten
+Dann kann man den Lidar endlich starten
 
     roslaunch ydlidar_ros_driver X4.launch
 
 > Zuerst roscore mit dem kommando `roscore` starten, sonst gibts errors!
 
-> Ich empfehle es mit screens zu arbeiten.  
-> screen kann man mit `sudo apt install screen` installieren  
-> um sachen in einen screen auszuführen einfach `screen -S <irgendein name> <Kommando>`
+> Ich empfehle mit Screens zu arbeiten.  
+> Screen kann man mit `sudo apt install screen` installieren  
+> Um sachen in einen Screen zu starten: `screen -S <irgendein name> <Kommando>` (Kommando wird in dem neuen screen ausgeführt)
 > z.B.: `screen -S lidar roslaunch ydlidar_ros_driver X4.launch`
 > 
-> um aus den screen herauszukommen `strg + a` + `d` drücken
+> um aus dem Screen herauszukommen `strg` + `a` + `d` drücken
 > 
 > um wieder hereinzukommen `screen -r <name>` z.B.: `screen -r lidar`
 > 
-> oder um alle anzuzeigen, nur `screen -r` eingeben
+> oder um alle anzuzeigen, nur `screen -ls` eingeben
 > 
-> der screen lässt sich wie ein normaler prozess mit `strg + c` schliessen
+> der screen lässt sich wie ein normaler prozess mit `strg + c` schließen
 > 
-> für mehr infos `man screen nutzten` (man gibts in apt, wenn nicht vorinstalliert)
+> für mehr infos: `man screen` nutzten (man gibts in apt, wenn nicht vorinstalliert)
