@@ -82,6 +82,7 @@ YDLidar-SDK herunterladen und installieren:
 
     cd ~/ydlidar_ws/src/
     git clone https://github.com/YDLIDAR/YDLidar-SDK.git
+    mkdir YDLidar-SDK/build
     cd YDLidar-SDK/build
     cmake ..
     make
