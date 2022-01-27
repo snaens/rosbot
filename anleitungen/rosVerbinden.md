@@ -4,7 +4,7 @@ Sodass ROS sich automatisch an der IP vom Robot anpasst, muss man ROS die IP "sa
     
 .bashrc wird immer ausgefuehrt wenn der Nutzer ein terminal startet
 
-in der Datei unten folgendes reinkoperen:
+in die Datei folgendes am ende hereinkoperen:
 
     MYIP=`hostname -I | awk '{print $1}'`
     export ROS_MASTER_URI=http://${MYIP}:11311
