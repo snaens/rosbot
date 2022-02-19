@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#start file location
+#launch file location
 LAUNCH='/root/ydlidar_ws/src/ydlidar_ros_driver/launch/X4.launch'
+NAME='lidar'
 
 #colors!
 RED='\033[0;31m'
@@ -15,10 +16,9 @@ if ! screen -list | grep -q "roscore"; then
 	exit 0
 fi
 
-#check if lidar is running
-if screen -list | grep -q "lidar"; then
-    printf "${RED}ERROR: LIDAR is already running.${NC}%s\n"
-    printf "${RED}start anyway? (not recommended) y/n${NC}%s\n" #ask if user would like to continue anyway
+#check if lidar is already running
+if screen -list | grep -q "${NAME}"; then
+    printf "${RED}ERROR: ${NAME} is already running.\nStart anyway? (not recommended) y/n${NC}%s\n" #ask if user would like to continue anyway
     read -r YN
 	if ! [ "$YN" = "y" ]||[ "$YN" = "Y" ]; then
 		exit 1
@@ -56,20 +56,20 @@ line=$(grep -nw port "${LAUNCH}" | cut -f1 -d:)
 sed -i "${line}"c"\ \ \ \ <param name=\"port\"         type=\"string\" value=\"${port}\"/>" "${LAUNCH}"
 
 if ! [ -e ${port} ]; then #check if the port exists
-        printf "${RED}ERROR: could not find LIDAR.${NC}%s\n" && exit 1
+        printf "${RED}ERROR: could not find ${NAME}.${NC}%s\n" && exit 1
 fi
 
 
-
 #LAUNCH!
-printf "${YELLOW}starting LIDAR...${NC}%s\n"
-rm /root/rosbot/logs/lidarLog.txt #remove old log, otherwise log just keeps on getting longer...
+printf "${YELLOW}starting ${NAME}...${NC}%s\n"
+rm /root/rosbot/logs/${NAME}Log.txt #remove old log, otherwise log just keeps on getting longer...
 {
-screen -dm -L -Logfile "/root/rosbot/logs/lidarLog.txt" -S lidar roslaunch "${LAUNCH}" && printf "${GREEN}Screen 'lidar' started!${NC}%s\n"
+screen -dm -L -Logfile "/root/rosbot/logs/${NAME}Log.txt" -S ${NAME} roslaunch "${LAUNCH}" && printf "${GREEN}Screen '${NAME}' started!${NC}%s\n"
 }||{ #(and check for errors)
-printf "${RED}ERROR: could not start screen 'lidar'${NC}%s\n"
+printf "${RED}ERROR: could not start screen '${NAME}'${NC}%s\n"
 }
-sleep 6
-if ! screen -list | grep -q "lidar"; then
-    printf "${RED}ERROR: screen crashed! check logs at '~/rosbot/logs/lidarLog.txt'${NC}%s\n" && exit 1
+
+sleep 8
+if ! screen -list | grep -q "${NAME}"; then
+  printf "${RED}ERROR: screen crashed! Check logs at '~/rosbot/logs/${NAME}Log.txt'${NC}%s\n" && exit 2
 fi

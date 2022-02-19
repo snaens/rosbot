@@ -7,4 +7,5 @@ OMG HENLO FERNS, hier gibts tolles zeugs vom Robot!
 >
 >roscore :OK  
 >lidar :OK  
->camera :WIP  
+>camera :OK  
+> skid :OK
