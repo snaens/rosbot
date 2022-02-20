@@ -72,4 +72,3 @@ das Skript dann ausführen:
 >oder in einen screen packen  
 > z.B.: `screen -S camera roslaunch libuvc_camera.launch`
 
->Ich hab LEIDER noch kein skript dafür ~~Werbung~~
