@@ -7,5 +7,7 @@ OMG HENLO FERNS, hier gibts tolles zeugs vom Robot!
 >
 >roscore :Stable  
 >lidar :Stable  
->camera :Beta
+>camera :Beta  
 >skid :Kaputti! Bin scho' am reparieren!
+
+
