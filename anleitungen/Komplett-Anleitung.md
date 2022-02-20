@@ -16,9 +16,9 @@ Anleitungen: https://github.com/MrGreenLlama/rosbot/
 
 
 ### Auf dem laptop
-``export ROS_MASTER_URI=http://192.168.1.200:11311``
-``export ROS_IP=192.168.1.100`` (laptop-IP eingeben)
+``export ROS_MASTER_URI=http://192.168.1.200:11311``  
+``export ROS_IP=192.168.1.100`` (laptop-IP eingeben)  
 
 #### Anzeige/steuer-programme
-``rosrun rviz rviz``
-``python3 ~/catkin_ws/src/edu_virtual_joy/scripts/edu_virtual_joy_node.py``
+``rosrun rviz rviz``  
+``python3 ~/catkin_ws/src/edu_virtual_joy/scripts/edu_virtual_joy_node.py``  
