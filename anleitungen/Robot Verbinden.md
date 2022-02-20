@@ -12,7 +12,7 @@ die Konsole eines anderen Computers über das Internet zu steuern.
 man sieht nicht, was man tippt.
 
  - ``nutzer: `` Der Nutzer, der man sein möchte, bzw. "root" in dem Fall
- - ``ip: `` Die IP im Internet / des Netzwerks auf den man verbinden möchte (IP, Sam?)
+ - ``ip: `` Die IP im Internet / des Netzwerks auf den man verbinden möchte 
 
 #### Ausloggen:
 ``ctrl + D`` drücken oder ``logout`` schreiben.
