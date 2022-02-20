@@ -8,4 +8,4 @@ OMG HENLO FERNS, hier gibts tolles zeugs vom Robot!
 >roscore :OK  
 >lidar :OK  
 >camera :OK  
->skid :OK
+>skid :Kaputti! Bin scho' am reparieren!
