@@ -1,11 +1,3 @@
-# rosbot
-
----
-OMG HENLO FERNS, hier gibts tolles zeugs vom Rosbot!
-
->Start skripte:
->
->roscore :OK  
->lidar :OK  
->camera :OK  
->skid :OK  
+# REPO MOVED!  
+now in the pipeman organization!  
+> https://github.com/The-Pipeman-Organization/rosbot
